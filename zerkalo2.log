@@ -1,0 +1,156 @@
+--------------- START ---------------
+2021-01-17 20:10:22
+---- sync start ----
+cd ~/WORK/test-build2/
+rm -r www.chiark.greenend.org.uk
+rm -r src
+mkdir src
+wget -mkEpnp https://www.chiark.greenend.org.uk/~sgtatham/bugs.html
+---- build start ----
+cd ~/WORK/test-build2/
+scp www.chiark.greenend.org.uk/~sgtatham/* src/
+docker image rm zercalo2
+Untagged: zercalo2:latest
+Deleted: sha256:19f0a51c46d4ee7d16f2d22ac8bf5596dd6e42df0eeea24687d30d6681d3c9d8
+docker build -t zercalo2 .
+Sending build context to Docker daemon  908.8MB
+Step 1/6 : FROM python:3
+ ---> da24d18bf4bf
+Step 2/6 : COPY src/*.html /src/
+ ---> Using cache
+ ---> 7e19d42663e7
+Step 3/6 : EXPOSE 8080
+ ---> Using cache
+ ---> 5872752a073b
+Step 4/6 : WORKDIR /src
+ ---> Using cache
+ ---> 8c4cd9f2b9e1
+Step 5/6 : RUN cp bugs.html index.html
+ ---> Using cache
+ ---> 0c64fa3db4d1
+Step 6/6 : CMD python -m http.server 8090
+ ---> Running in b74623fc8684
+Removing intermediate container b74623fc8684
+ ---> 90cbbb4f55c7
+Successfully built 90cbbb4f55c7
+Successfully tagged zercalo2:latest
+docker save -o zercalo2.tar zercalo2
+---- deploy start ----
+scp -i ~/.ssh/test-server ~/WORK/test-build2/zercalo2.tar ubuntu@77.223.97.71:~/WORK/test-build2/
+ssh server-dev-ubuntu "docker kill zercalo2-container"
+zercalo2-container
+ssh server-dev-ubuntu "docker container rm zercalo2-container"
+zercalo2-container
+ssh server-dev-ubuntu "docker image rm zercalo2"
+Untagged: zercalo2:latest
+Deleted: sha256:19f0a51c46d4ee7d16f2d22ac8bf5596dd6e42df0eeea24687d30d6681d3c9d8
+Deleted: sha256:afe6ad35c84ebb77e0f33afd3c14272ec2c0b897a647f35357a8d33f1e0295ef
+Deleted: sha256:9de22138880dc3baaf3b64d19ea442cdbc64839db40f463e7c46e1b6d7121868
+ssh server-dev-ubuntu "cd ~/WORK/test-build2/ && docker load -i zercalo2.tar && docker run -d -p 90:8090 --name zercalo2-container zercalo2"
+Loaded image: zercalo2:latest
+37274741bc9d1b7e2c08a5b0bb1ab1fbba65117a66c901813f8c9100c71a9a8f
+--------------- END ---------------
+--------------- START ---------------
+2021-01-17 20:13:53
+---- sync start ----
+cd ~/WORK/test-build2/
+rm -r www.chiark.greenend.org.uk
+rm -r src
+mkdir src
+wget -mkEpnp https://www.chiark.greenend.org.uk/~sgtatham/bugs.html
+---- build start ----
+cd ~/WORK/test-build2/
+scp www.chiark.greenend.org.uk/~sgtatham/* src/
+docker image rm zercalo2
+Untagged: zercalo2:latest
+Deleted: sha256:90cbbb4f55c75cd0122e2039ebf75ed4d2204afa81d02d72509223c7847d962a
+docker build -t zercalo2 .
+Sending build context to Docker daemon  908.8MB
+Step 1/6 : FROM python:3
+ ---> da24d18bf4bf
+Step 2/6 : COPY src/*.html /src/
+ ---> Using cache
+ ---> 7e19d42663e7
+Step 3/6 : EXPOSE 8080
+ ---> Using cache
+ ---> 5872752a073b
+Step 4/6 : WORKDIR /src
+ ---> Using cache
+ ---> 8c4cd9f2b9e1
+Step 5/6 : RUN cp bugs.html index.html
+ ---> Using cache
+ ---> 0c64fa3db4d1
+Step 6/6 : CMD python -m http.server 8090
+ ---> Running in e18124d62423
+Removing intermediate container e18124d62423
+ ---> 37a4e01ee79c
+Successfully built 37a4e01ee79c
+Successfully tagged zercalo2:latest
+docker save -o zercalo2.tar zercalo2
+---- deploy start ----
+scp -i ~/.ssh/test-server ~/WORK/test-build2/zercalo2.tar ubuntu@77.223.97.71:~/WORK/test-build2/
+ssh server-dev-ubuntu "docker kill zercalo2-container"
+zercalo2-container
+ssh server-dev-ubuntu "docker container rm zercalo2-container"
+zercalo2-container
+ssh server-dev-ubuntu "docker image rm zercalo2"
+Untagged: zercalo2:latest
+Deleted: sha256:90cbbb4f55c75cd0122e2039ebf75ed4d2204afa81d02d72509223c7847d962a
+Deleted: sha256:afe6ad35c84ebb77e0f33afd3c14272ec2c0b897a647f35357a8d33f1e0295ef
+Deleted: sha256:9de22138880dc3baaf3b64d19ea442cdbc64839db40f463e7c46e1b6d7121868
+ssh server-dev-ubuntu "cd ~/WORK/test-build2/ && docker load -i zercalo2.tar && docker run -d -p 90:8090 --name zercalo2-container zercalo2"
+Loaded image: zercalo2:latest
+a7c0884e53498ebd2df23d9c5c93e582daa142108e370c5a3b4b650d84a6edbe
+--------------- END ---------------
+--------------- START ---------------
+2021-01-17 20:26:08
+---- sync start ----
+cd ~/WORK/test-build2/
+rm -r www.chiark.greenend.org.uk
+rm -r src
+mkdir src
+wget -mkEpnp https://www.chiark.greenend.org.uk/~sgtatham/bugs.html
+---- build start ----
+cd ~/WORK/test-build2/
+scp www.chiark.greenend.org.uk/~sgtatham/* src/
+docker image rm zercalo2
+Untagged: zercalo2:latest
+Deleted: sha256:37a4e01ee79c54bea63b878812c054161498fe5e9513ebc79d1b598ebd579fbd
+docker build -t zercalo2 .
+Sending build context to Docker daemon  908.8MB
+Step 1/6 : FROM python:3
+ ---> da24d18bf4bf
+Step 2/6 : COPY src/*.html /src/
+ ---> Using cache
+ ---> 7e19d42663e7
+Step 3/6 : EXPOSE 8080
+ ---> Using cache
+ ---> 5872752a073b
+Step 4/6 : WORKDIR /src
+ ---> Using cache
+ ---> 8c4cd9f2b9e1
+Step 5/6 : RUN cp bugs.html index.html
+ ---> Using cache
+ ---> 0c64fa3db4d1
+Step 6/6 : CMD python -m http.server 8090
+ ---> Running in a4fd632d7ce2
+Removing intermediate container a4fd632d7ce2
+ ---> 7b3868e513e2
+Successfully built 7b3868e513e2
+Successfully tagged zercalo2:latest
+docker save -o zercalo2.tar zercalo2
+---- deploy start ----
+scp -i ~/.ssh/test-server ~/WORK/test-build2/zercalo2.tar ubuntu@77.223.97.71:~/WORK/test-build2/
+ssh server-dev-ubuntu "docker kill zercalo2-container"
+zercalo2-container
+ssh server-dev-ubuntu "docker container rm zercalo2-container"
+zercalo2-container
+ssh server-dev-ubuntu "docker image rm zercalo2"
+Untagged: zercalo2:latest
+Deleted: sha256:37a4e01ee79c54bea63b878812c054161498fe5e9513ebc79d1b598ebd579fbd
+Deleted: sha256:afe6ad35c84ebb77e0f33afd3c14272ec2c0b897a647f35357a8d33f1e0295ef
+Deleted: sha256:9de22138880dc3baaf3b64d19ea442cdbc64839db40f463e7c46e1b6d7121868
+ssh server-dev-ubuntu "cd ~/WORK/test-build2/ && docker load -i zercalo2.tar && docker run -d -p 90:8090 --name zercalo2-container zercalo2"
+Loaded image: zercalo2:latest
+bafdaf2536668145328ac899e9700ac99962b0f112436ac76e0cb288c3eefda6
+--------------- END ---------------
